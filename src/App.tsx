@@ -106,6 +106,8 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [showLanding, setShowLanding] = useState(true);
+
 
   const handleInvest = (name: string) => {
     setInvestments((prev) =>
@@ -151,15 +153,56 @@ export default function App() {
     return 0;
   });
 
-  return (
-    <div
-      style={{
-        padding: "1.5rem",
-        fontFamily: "Arial, sans-serif",
-        maxWidth: "960px",
-        margin: "0 auto",
-      }}
-    >
+  if (showLanding) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "Arial, sans-serif",
+          backgroundColor: "#f4f4f4",
+        }}
+      >
+        <img
+          src="https://img.icons8.com/ios-filled/100/228BE6/shop.png"
+          alt="Logo"
+          style={{ width: 80, marginBottom: "1rem" }}
+        />
+        <h1>{t[language].appTitle}</h1>
+        <p style={{ marginBottom: "2rem" }}>{t[language].tagline}</p>
+        <button
+          onClick={() => setShowLanding(false)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            fontSize: "1rem",
+            backgroundColor: "#228BE6",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          Enter App
+        </button>
+      </div>
+    );
+  }
+    
+    
+    
+    return (
+      <div
+        style={{
+          padding: "1.5rem",
+          fontFamily: "Arial, sans-serif",
+          maxWidth: "960px",
+          margin: "0 auto",
+        }}
+      >
+    
       {/* Logo + Title */}
       <div style={{ textAlign: "center", marginBottom: "1rem" }}>
         <img
