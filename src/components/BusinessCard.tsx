@@ -1,3 +1,4 @@
+// src/components/BusinessCard.tsx
 import React from "react";
 import { Star, PiggyBank } from "lucide-react";
 
@@ -8,6 +9,8 @@ interface Props {
   returns: string;
   onInvest: (name: string) => void;
   invested: boolean;
+  t: any; // ✅ translations object
+  language: "en" | "sw"; // ✅ current language
 }
 
 const BusinessCard: React.FC<Props> = ({
@@ -17,6 +20,8 @@ const BusinessCard: React.FC<Props> = ({
   returns,
   onInvest,
   invested,
+  t,
+  language,
 }) => {
   return (
     <div
@@ -33,12 +38,16 @@ const BusinessCard: React.FC<Props> = ({
 
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         <Star size={16} color="gold" />
-        <span>{rating} / 5</span>
+        <span>
+          {t[language].rating}: {rating} / 5
+        </span>
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         <PiggyBank size={16} color="green" />
-        <span>{returns}</span>
+        <span>
+          {t[language].returns}: {returns}
+        </span>
       </div>
 
       <button
@@ -53,7 +62,7 @@ const BusinessCard: React.FC<Props> = ({
           cursor: "pointer",
         }}
       >
-        {invested ? "Invested ✅" : "Invest 💸"}
+        {invested ? t[language].invested : t[language].invest}
       </button>
     </div>
   );
